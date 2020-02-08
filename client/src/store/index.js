@@ -13,7 +13,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getUsersFullData(state, url) {
+    async fetchUsersFullData(state, url) {
       await fetch(url)
         .then((responce) => {
           return responce.json();
@@ -24,6 +24,11 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error);
         });
+    }
+  },
+  getters: {
+    getUsersFullData(state) {
+      return state.users;
     }
   }
 })

@@ -1,23 +1,33 @@
 <template>
-  <div class="full">full</div>
+  <div class="full">
+		<app-table :data="getUsersFullData" />
+	</div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import AppTable from '@/components/AppTable.vue';
 
 export default {
   name: "Full",
-  components: {},
+  components: {
+		AppTable
+	},
   data() {
     return {
 
 		}
 	},
 	mounted() {
-		this.getUsersFullData('http://localhost:3000/users');
+		this.fetchUsersFullData('http://localhost:3000/users');
 	},
 	methods: {
 		...mapActions([
+			'fetchUsersFullData'
+		])
+	},
+	computed: {
+		...mapGetters([
 			'getUsersFullData'
 		])
 	}
