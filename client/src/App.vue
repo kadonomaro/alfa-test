@@ -1,13 +1,16 @@
 <template>
   <div id="app">
+    <page-nav />
     <main-layout />
   </div>
 </template>
 
 <script>
+import PageNav from '@/components/PageNav.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 export default {
   components: {
+    PageNav,
     MainLayout
   }
   

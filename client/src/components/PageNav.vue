@@ -22,6 +22,9 @@ export default {
 
 <style lang="scss">
 .page-nav {
+	padding: 10px;
+	background-color: #ececec;
+	box-shadow: 0 5px 5px rgba($color: #000000, $alpha: 0.2);
 	&__list {
 		display: flex;
 		justify-content: center;
