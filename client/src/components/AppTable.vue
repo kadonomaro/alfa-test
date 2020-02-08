@@ -10,7 +10,7 @@
 					<th>Монеты</th>
 				</tr>
 				<tr v-for="item in rowCount ? sortedData.slice(0, rowCount) : sortedData" :key="item.idNode">
-					<td>1</td>
+					<td>{{ item.position }}</td>
 					<td>{{ item.fio }}</td>
 					<td>{{ item.level }}</td>
 					<td>{{ item.exp }}</td>
@@ -26,6 +26,7 @@ export default {
 	name: 'AppTable',
 	props: {
 		data: {
+			type: Array,
 			required: true
 		},
 		rowCount: {
@@ -47,6 +48,7 @@ export default {
 			}
 			return sum;
 		},
+
 		getCoinsSum(data) {
 			data = JSON.parse(data);
 			let sum = 0;
@@ -59,18 +61,25 @@ export default {
 				}
 			}
 			return sum;
+		},
+
+		compareExp(a, b) {
+			return a.exp - b.exp;
 		}
 	},
 	computed: {
 		sortedData() {
-			return this.data.map((item)=>{
+			return this.data.map((item) => {
 				return {
+					get position() {
+						return 1
+					},
 					fio: item.fio,
 					level: item.level,
 					exp: this.getExperienceSum(item.resources),
-					coins: this.getCoinsSum(item.resources)
+					coins: this.getCoinsSum(item.resources),
 				};
-			})
+			}).sort(this.compareExp).reverse();
 		}
 	}
 
