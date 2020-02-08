@@ -6,13 +6,22 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import PageNav from '@/components/PageNav.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
 export default {
   components: {
     PageNav,
     MainLayout
-  }
+  },
+	mounted() {
+		this.fetchUsersFullData('http://localhost:3000/users');
+	},
+	methods: {
+		...mapActions([
+			'fetchUsersFullData'
+		])
+	},
   
 }
 </script>

@@ -9,12 +9,12 @@
 					<th>Опыт</th>
 					<th>Монеты</th>
 				</tr>
-				<tr v-for="item in data" :key="item.idNode">
+				<tr v-for="item in rowCount ? sortedData.slice(0, rowCount) : sortedData" :key="item.idNode">
 					<td>1</td>
 					<td>{{ item.fio }}</td>
 					<td>{{ item.level }}</td>
-					<td>{{ getExperienceSum(item.resources) }}</td>
-					<td>{{ getCoinsSum(item.resources) }}</td>
+					<td>{{ item.exp }}</td>
+					<td>{{ item.coins }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -27,6 +27,10 @@ export default {
 	props: {
 		data: {
 			required: true
+		},
+		rowCount: {
+			type: Number,
+			required: false
 		}
 	},
 	methods: {
@@ -55,6 +59,18 @@ export default {
 				}
 			}
 			return sum;
+		}
+	},
+	computed: {
+		sortedData() {
+			return this.data.map((item)=>{
+				return {
+					fio: item.fio,
+					level: item.level,
+					exp: this.getExperienceSum(item.resources),
+					coins: this.getCoinsSum(item.resources)
+				};
+			})
 		}
 	}
 
