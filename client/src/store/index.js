@@ -8,9 +8,22 @@ export default new Vuex.Store({
     users: [],
   },
   mutations: {
+    updateUsersData(state, users) {
+      state.users = users;
+    }
   },
   actions: {
-  },
-  modules: {
+    async getUsersFullData(state, url) {
+      await fetch(url)
+        .then((responce) => {
+          return responce.json();
+        })
+        .then((data) => {
+          state.commit('updateUsersData', data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
   }
 })
