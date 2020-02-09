@@ -22,14 +22,11 @@ export default new Vuex.Store({
           state.commit('updateUsersData', data);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     }
   },
   getters: {
-    getUsersFullData(state) {
-      return state.users;
-    },
     getUsersSortedData(state) {
       return state.users.map((user) => {
         return {

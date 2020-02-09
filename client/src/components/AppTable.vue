@@ -61,6 +61,11 @@ export default {
 			});
 		}
 	},
+	watch: {
+		data() {
+			this.getCurrentPosition();
+		}
+	}
 }
 </script>
 
