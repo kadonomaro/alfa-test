@@ -44,6 +44,7 @@ export default {
 	},
 	methods: {
 		getCurrentPosition() {
+			this.positions.length = 0;
 			let position = 1;
 			this.positions.push(position);
 			this.data.slice(0, this.rowCount).forEach((item, index, data) => {

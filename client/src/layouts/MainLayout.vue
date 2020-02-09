@@ -1,8 +1,9 @@
 <template>
   <main class="main">
-
 		<div class="main__content">
-			<router-view/>
+			<transition name="fade" mode="out-in">
+				<router-view/>
+			</transition>
 		</div>
 	</main>
 </template>

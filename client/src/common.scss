@@ -16,3 +16,14 @@ body {
 	background-color: lighten($color: #4e4e4e, $amount: 10%);
   }
 }
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
