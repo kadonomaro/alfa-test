@@ -3,7 +3,7 @@ import users from 'data/testdata.json';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
+  getHomePage(): string {
     return 'Hello World!';
   }
 
