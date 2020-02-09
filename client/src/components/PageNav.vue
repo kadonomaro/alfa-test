@@ -45,4 +45,16 @@ export default {
 		}
 	}
 }
+
+@media screen and (max-width: 767px) {
+	.page-nav {
+		&__list {
+			display: block;
+		}
+		&__item {
+			max-width: 120px;
+			margin: 0 auto 5px;
+		}
+	}
+}
 </style>

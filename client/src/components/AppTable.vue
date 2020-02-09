@@ -111,13 +111,14 @@ export default {
 
 <style lang="scss">
 	.app-table {
+		overflow-x: auto;
 		&__table {
 			margin: 0 auto;
 			border: 1px solid #303030;
 			border-collapse: collapse;
 			th,
 			td {
-				padding: 5px 8px;
+				padding: 8px 12px;
 			}
 			th {
 				color: #ffffff;
@@ -133,6 +134,15 @@ export default {
 				}
 			}
 		}
+	}
+
+	@media screen and (max-width: 767px) {
+		.app-table {
+			th,
+			td {
+				padding: 4px 6px;
+			}
+		}	
 	}
 
 </style>
