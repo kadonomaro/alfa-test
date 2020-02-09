@@ -29,6 +29,50 @@ export default new Vuex.Store({
   getters: {
     getUsersFullData(state) {
       return state.users;
+    },
+    getUsersSortedData(state) {
+      return state.users.map((user) => {
+        return {
+          fio: user.fio,
+          level: user.level,
+          exp: getExperienceSum(user.resources),
+          coins: getCoinsSum(user.resources)
+        }
+      }).sort(compare).reverse();
     }
   }
-})
+});
+
+
+function getExperienceSum(data) {
+  data = JSON.parse(data);
+  let sum = 0;
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      const element = data[key];
+      if (element.resource === 'ACTIVERATE' || element.resource === 'PASSIVERATE') {
+        sum += element.value;
+      }
+    }
+  }
+  return sum;
+}
+
+
+function getCoinsSum(data) {
+  data = JSON.parse(data);
+  let sum = 0;
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      const element = data[key];
+      if (element.resource === 'MONEY') {
+        sum += element.value;
+      }
+    }
+  }
+  return sum;
+}
+
+function compare(a, b) {
+  return a.exp - b.exp;
+}

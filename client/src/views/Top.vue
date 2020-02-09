@@ -1,6 +1,9 @@
 <template>
   <div class="top">
-    <app-table :data="getUsersFullData" :rowCount="5"/>
+    <!-- <app-table :data="getUsersFullData" :rowCount="5"/>
+    <hr>
+    <span>sorted</span> -->
+    <app-table :data="getUsersSortedData" :rowCount="5"/>
   </div>
 </template>
 
@@ -15,7 +18,8 @@ export default {
   },
 	computed: {
 		...mapGetters([
-			'getUsersFullData'
+      'getUsersFullData',
+      'getUsersSortedData'
 		])
 	}
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="full">
-		<app-table :data="getUsersFullData" />
+		<app-table :data="getUsersSortedData" />
 	</div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'getUsersFullData'
+			'getUsersFullData',
+			'getUsersSortedData'
 		])
 	}
 };
