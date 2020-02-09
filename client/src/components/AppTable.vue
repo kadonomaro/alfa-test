@@ -43,7 +43,7 @@ export default {
 		this.getCurrentPosition();
 	},
 	methods: {
-		getCurrentPosition(index) {
+		getCurrentPosition() {
 			let position = 1;
 			this.positions.push(position);
 			this.data.slice(0, this.rowCount).forEach((item, index, data) => {
@@ -59,9 +59,8 @@ export default {
 					}
 				}
 			});
-		},
-	}
-
+		}
+	},
 }
 </script>
 
