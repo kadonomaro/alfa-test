@@ -9,12 +9,12 @@
 					<th>Опыт</th>
 					<th>Монеты</th>
 				</tr>
-				<tr v-for="item in rowCount ? sortedData.slice(0, rowCount) : sortedData" :key="item.idNode">
-					<td>{{ item.position }}</td>
-					<td>{{ item.fio }}</td>
-					<td>{{ item.level }}</td>
-					<td>{{ item.exp }}</td>
-					<td>{{ item.coins }}</td>
+				<tr v-for="(user, index) in rowCount ? sortedData.slice(0, rowCount) : sortedData" :key="index">
+					<td>{{ positions[index] }}</td>
+					<td>{{ user.fio }}</td>
+					<td>{{ user.level }}</td>
+					<td>{{ user.exp }}</td>
+					<td>{{ user.coins }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -34,7 +34,33 @@ export default {
 			required: false
 		}
 	},
+	data() {
+		return {
+			positions: [],
+		}
+	},
+	mounted() {
+		this.getCurrentPosition();
+	},
 	methods: {
+		getCurrentPosition(index) {
+			let position = 1;
+			this.positions.push(position);
+			this.sortedData.slice(0, this.rowCount).forEach((item, index, data) => {
+				const current = data[index];
+				const prev = data[index - 1];
+				if (prev) {
+					if (prev.exp > current.exp) {
+						position++;
+						this.positions.push(position);
+					} else if (prev.exp === current.exp) {
+						position = position;
+						this.positions.push(position);
+					}
+				}
+			});
+		},
+
 		getExperienceSum(data) {
 			data = JSON.parse(data);
 			let sum = 0;
@@ -71,9 +97,6 @@ export default {
 		sortedData() {
 			return this.data.map((item) => {
 				return {
-					get position() {
-						return 1
-					},
 					fio: item.fio,
 					level: item.level,
 					exp: this.getExperienceSum(item.resources),
