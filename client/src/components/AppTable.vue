@@ -9,7 +9,7 @@
 					<th>Опыт</th>
 					<th>Монеты</th>
 				</tr>
-				<tr v-for="(user, index) in rowCount ? data.slice(0, rowCount) : data" :key="index">
+				<tr v-for="(user, index) in data" :key="index">
 					<td>{{ positions[index] }}</td>
 					<td>{{ user.fio }}</td>
 					<td>{{ user.level }}</td>
@@ -28,10 +28,6 @@ export default {
 		data: {
 			type: Array,
 			required: true
-		},
-		rowCount: {
-			type: Number,
-			required: false
 		}
 	},
 	data() {
@@ -47,7 +43,7 @@ export default {
 			this.positions.length = 0;
 			let position = 1;
 			this.positions.push(position);
-			this.data.slice(0, this.rowCount).forEach((item, index, data) => {
+			this.data.forEach((item, index, data) => {
 				const current = data[index];
 				const prev = data[index - 1];
 				if (prev) {

@@ -27,7 +27,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getUsersSortedData(state) {
+    getUsersFullData(state) {
       return state.users.map((user) => {
         return {
           fio: user.fio,
@@ -36,7 +36,18 @@ export default new Vuex.Store({
           coins: getCoinsSum(user.resources)
         }
       }).sort(compare).reverse();
-    }
+    },
+
+    getUsersTopData(state) {
+      return state.users.slice(0, 5).map((user) => {
+        return {
+          fio: user.fio,
+          level: user.level,
+          exp: getExperienceSum(user.resources),
+          coins: getCoinsSum(user.resources)
+        }
+      }).sort(compare).reverse();
+    },
   }
 });
 
